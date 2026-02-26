@@ -1,0 +1,326 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  min-height: 100vh;
+  color: #f0f0f0;
+  overflow: hidden;
+  background: url("background.png") no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  cursor: crosshair; /* optional: hide default cursor if you add custom one later */
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.65) 30%, rgba(20,0,0,0.85) 70%);
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* ─── Particles ─── */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* ─── HUD / Nav ─── */
+.hud-nav {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  display: flex;
+  gap: 35px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  z-index: 10;
+}
+
+.hud-nav a {
+  color: #ff0044;
+  text-decoration: none;
+  text-shadow: 0 0 12px #ff0044;
+}
+
+.hud-nav a.active {
+  color: #ff1a5c;
+  animation: glitch-skew 3s infinite alternate;
+}
+
+.hud-glitch-small {
+  color: #00ffea;
+  text-shadow: 0 0 10px #00ffea;
+  opacity: 0.7;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* ─── Music Button ─── */
+#musicToggle {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  border: 2px solid #ff0044;
+  border-radius: 50%;
+  color: #ff0044;
+  font-size: 1.6rem;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255,0,68,0.5);
+  transition: all 0.4s;
+  z-index: 10;
+}
+
+#musicToggle:hover {
+  background: #ff0044;
+  color: white;
+  box-shadow: 0 0 40px #ff0044;
+  transform: scale(1.15);
+}
+
+/* ─── Stats Panel ─── */
+.stats-panel {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: right;
+  z-index: 10;
+}
+
+.stat .label {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  color: #aaa;
+  letter-spacing: 1.5px;
+}
+
+.stat .value {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #ff0044;
+  text-shadow: 0 0 20px #ff0044, 0 0 40px #ff004480;
+}
+
+/* ─── Main Hero ─── */
+.hero {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+.logo img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 5px solid #ff0044;
+  box-shadow: 0 0 40px #ff0044, inset 0 0 20px #ff004480;
+  margin-bottom: 30px;
+  transition: transform 0.6s;
+}
+
+.logo img:hover {
+  transform: scale(1.1) rotate(8deg);
+}
+
+/* Glitch text */
+.glitch-text {
+  font-size: 5.5rem;
+  font-weight: 900;
+  letter-spacing: 6px;
+  position: relative;
+  color: #fff;
+  text-shadow: 0.05em 0 0 #ff0044, -0.05em 0 0 #00ffea;
+  animation: glitch-anim 4s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -2px 0 #00ffea;
+  clip: rect(0, 900px, 0, 0);
+  animation: glitch-anim2 3s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: 2px 0 #ff0044;
+  clip: rect(0, 900px, 0, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+.subtitle {
+  font-size: 1.6rem;
+  color: #00ffea;
+  text-shadow: 0 0 15px #00ffea;
+  margin: 20px 0 40px;
+  letter-spacing: 2px;
+}
+
+.neon-btn {
+  padding: 18px 60px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(45deg, #ff0044, #aa0033);
+  border-radius: 60px;
+  box-shadow: 0 0 30px #ff0044, inset 0 0 15px #ff1a5c;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.neon-btn:hover {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 0 60px #ff0044, 0 0 100px #ff004480;
+}
+
+.neon-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(transparent, rgba(255,255,255,0.25), transparent);
+  transform: rotate(45deg);
+  animation: shine 6s infinite;
+}
+
+/* Blinking cursor effect */
+.status-line {
+  margin-top: 60px;
+  font-family: 'Roboto Mono', monospace;
+  color: #00ff9d;
+  font-size: 1.3rem;
+  opacity: 0.8;
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── Animations ─── */
+@keyframes glitch-anim {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-4px, 2px); }
+  40% { transform: translate(4px, -2px); }
+  60% { transform: translate(-2px, 2px); }
+  80% { transform: translate(2px, -1px); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(30px, 9999px, 60px, 0); }
+  20% { clip: rect(80px, 9999px, 120px, 0); }
+  /* ... more random-like clips ... */
+  100% { clip: rect(10px, 9999px, 140px, 0); }
+}
+
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  10% { transform: skew(2deg); }
+  20% { transform: skew(-3deg); }
+  100% { transform: skew(0deg); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  50% { transform: translateX(100%) rotate(45deg); }
+  100% { transform: translateX(300%) rotate(45deg); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .glitch-text { font-size: 3.8rem; letter-spacing: 4px; }
+  .neon-btn { padding: 14px 40px; font-size: 1.3rem; }
+  .stats-panel { right: 15px; top: 15px; }
+}
+
+/* Top-left tabs container */
+.top-nav {
+    position: fixed;
+    top: 25px;
+    left: 30px;
+    display: flex;              /* makes them side-by-side */
+    gap: 35px;                  /* space between Home and Videos – adjust this number to move closer/farther */
+    z-index: 10;
+}
+
+/* Style for both links */
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 1.3rem;
+    transition: 0.3s;
+}
+
+/* Active Home tab (red glow) */
+.top-nav a.active {
+    color: red;
+    text-shadow: 0 0 10px red;
+}
+
+/* Videos tab (normal white, red on hover) */
+.top-nav a.videos-tab {
+    color: white;
+}
+
+.top-nav a.videos-tab:hover {
+    color: red;
+    text-shadow: 0 0 10px red;
+    transform: scale(1.05);
+}
+
+/* Your subscriber counter (keep on right) */
+.yt-counter {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+}
+
+/* Mobile adjustment (optional) */
+@media (max-width: 768px) {
+    .top-nav {
+        left: 20px;
+        gap: 25px;          /* smaller space on phones */
+    }
+    .top-nav a {
+        font-size: 1.1rem;
+    }
+    .yt-counter {
+        right: 20px;
+    }
+}

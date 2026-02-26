@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DARKNESS KALU</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background particles -->
+  <canvas id="particles"></canvas>
+
+  <!-- Dark overlay + subtle vignette -->
+  <div class="overlay"></div>
+
+  <!-- Top HUD style nav -->
+<nav class="top-nav">
+    <a href="#" class="active">Home</a>
+    <a href="https://www.youtube.com/@DarknessKALU" 
+       target="_blank" 
+       class="videos-tab">
+       Videos
+    </a>
+</nav>
+
+  <!-- Music control (now with glow pulse) -->
+  <button id="musicToggle" aria-label="Toggle music">🔊</button>
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Subscriber / stats panel -->
+  <div class="stats-panel">
+    <div class="stat">
+      <span class="label">SUBSCRIBERS</span>
+      <span class="value glitch" id="subCount">0</span>
+    </div>
+    <div class="stat">
+      <span class="label">ARMY SIZE</span>
+      <span class="value" id="memberCount">Growing...</span>
+    </div>
+  </div>
+
+  <main class="hero">
+    <div class="logo">
+      <img src="logo.png" alt="Darkness KALU Logo">
+    </div>
+
+    <h1 class="glitch-text" data-text="DARKNESS KALU">
+      <span class="text" id="typingText"></span>
+    </h1>
+
+    <p class="subtitle">Welcome To Dark World</p>
+
+    <a href="https://discord.gg/qQdsENFjA9" class="neon-btn" target="_blank">
+      JOIN THE LEGION
+    </a>
+
+    <p class="status-line">Initializing... <span class="blink">.</span></p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
