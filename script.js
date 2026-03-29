@@ -1,7 +1,7 @@
 // ─── Counter ───
 const subCountEl = document.getElementById("subCount");
 let target = 525; // ← change to your real goal
-let count = 0;
+let count = 0; 
 
 const counter = setInterval(() => {
   if (count < target) {
