@@ -1,6 +1,6 @@
 // ─── Counter ───
 const subCountEl = document.getElementById("subCount");
-let target = 470; // ← change to your real goal
+let target = 525; // ← change to your real goal
 let count = 0;
 
 const counter = setInterval(() => {
